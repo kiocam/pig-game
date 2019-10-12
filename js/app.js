@@ -14,6 +14,9 @@ var scores, roundScore, activePlayer, gamePlaying;
 var querySel = document.querySelector.bind(document);
 
 init();
+
+var lastDice
+
 querySel('.btn-roll').addEventListener('click', function () {
 
   if (gamePlaying) {
@@ -28,12 +31,14 @@ querySel('.btn-roll').addEventListener('click', function () {
 
     diceDOM.src = './imgs/dice-' + dice + '.png';
 
-
-
-
     //3. Update the score if the rolled number was not a 1
 
-    if (dice !== 1) {
+    if(dice === 6 && lastDice === 6) {
+      // player looses score
+      scores[activePlayer] = 0;
+      querySel('#score-' + activePlayer).textContent = '0';
+      nextPlayer();
+    } else if (dice !== 1) {
       // add score
 
       roundScore += dice;
@@ -42,6 +47,8 @@ querySel('.btn-roll').addEventListener('click', function () {
       //Next Player
       nextPlayer();
     }
+
+    lastDice = dice
   }
 
 });
@@ -110,4 +117,4 @@ function init() {
   querySel('.player-0-panel').classList.remove('active');
   querySel('.player-1-panel').classList.remove('active');
   querySel('.player-0-panel').classList.add('active');
-}
+};
