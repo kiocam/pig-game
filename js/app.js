@@ -14,8 +14,6 @@ var scores, roundScore, activePlayer, gamePlaying;
 var querySel = document.querySelector.bind(document);
 
 init();
-
-
 querySel('.btn-roll').addEventListener('click', function () {
 
   if (gamePlaying) {
@@ -36,7 +34,8 @@ querySel('.btn-roll').addEventListener('click', function () {
     //3. Update the score if the rolled number was not a 1
 
     if (dice !== 1) {
-      //add score
+      // add score
+
       roundScore += dice;
       querySel('#current-' + activePlayer).textContent = roundScore;
     } else {
