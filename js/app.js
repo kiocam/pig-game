@@ -64,8 +64,19 @@ querySel('.btn-hold').addEventListener('click', function () {
     // Update the User Interface
     querySel('#score-' + activePlayer).textContent = scores[activePlayer];
 
+
+    var input = querySel('.final-score').value;
+    var winningScore
+    
+    if (input) {
+      winningScore = input;
+    } else {
+      winningScore = 100;
+    }
+
+
     // check to see if current player won the game
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= winningScore) {
       querySel('#name-' + activePlayer).textContent = 'Winner!!!!';
       querySel('.dice').style.display = 'none';
       querySel('.player-' + activePlayer + '-panel').classList.add('winner');
